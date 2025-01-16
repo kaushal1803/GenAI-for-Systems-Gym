@@ -8,8 +8,22 @@ This repo offers a gym environment to facilitate research on Generative AI for S
 
 ## How to use the Gym?
 
+The following steps show a simple process of training a model
+
 ### Extracting Traces
 
-### Running a model
+### Training a model
 
-### 
+### Evaluating a model
+
+### Feeding the experiment data to RAG
+
+### Using the LLM-assistant
+
+## Advanced Steps
+
+### Feature Extraction
+
+### Fine-tuning the LLM
+
+
