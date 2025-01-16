@@ -8,9 +8,13 @@ This repo offers a gym environment to facilitate research on Generative AI for S
 
 ## How to use the Gym?
 
-The following steps show a simple process of training a model
+The following steps show a simple process of training a certain type of ML model, feeding the generated data (cache statistics) to a RAG system and using the LLM-assistant.
 
 ### Extracting Traces
+
+ - Steps to extract features
+
+ - Some extracted traces are made available in the "traces" directory.
 
 ### Training a model
 
@@ -22,8 +26,10 @@ The following steps show a simple process of training a model
 
 ## Advanced Steps
 
+### Trying out different architectures
+
+### Embedding exploration
+
 ### Feature Extraction
 
 ### Fine-tuning the LLM
-
-
