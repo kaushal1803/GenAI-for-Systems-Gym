@@ -207,7 +207,7 @@ def evaluate(policy_model, data, step, descriptor, tb_writer, log_dir, k=5):
     s.append(str(attention_table))
     s.append("\n")
     return "".join(s)
-  print("evalute()")
+  #print("evalute()")
   # Chop into batch_size parallel sequences
   subseq_length = len(data) // FLAGS.batch_size
   # (batch_size, subseq_length)
@@ -224,9 +224,9 @@ def evaluate(policy_model, data, step, descriptor, tb_writer, log_dir, k=5):
     probs, pred_reuse_distances, hidden_state, attention = policy_model(
         [entry.cache_access for entry in batch], hidden_state, inference=True)
 
-    print("*********************************")
-    print(type(attention))
-    print("bye")
+    #print("*********************************")
+    #print(type(attention))
+    #print("bye")
 
     eviction_mask = torch.tensor(
         [entry.eviction_decision.evict for entry in batch])

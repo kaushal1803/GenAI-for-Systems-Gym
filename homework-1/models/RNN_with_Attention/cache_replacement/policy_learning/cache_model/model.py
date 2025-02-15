@@ -85,7 +85,7 @@ class SimpleRNNEvictionPolicyModel(nn.Module):
     self._loss_fns = loss_fns
 
   def forward(self, cache_accesses, prev_hidden_state=None, inference=False):
-    print("forward")
+    
     batch_size = len(cache_accesses)
     if prev_hidden_state is None:
       hidden_state, hidden_state_history, access_history = self._initial_hidden_state(batch_size)
@@ -177,14 +177,12 @@ class SimpleRNNEvictionPolicyModel(nn.Module):
     batch_size = len(eviction_traces)
     hidden_state = self._initial_hidden_state(batch_size)
 
-    losses = collections.defaultdict(list)
     for i in range(warmup_period):
       cache_accesses = [trace[i].cache_access for trace in eviction_traces]
       _, _, hidden_state, _ = self(cache_accesses, hidden_state, inference=False)
 
-    total_loss = 0.0
-    loss_fn = self._loss_fns["log_likelihood"]
 
+    losses = collections.defaultdict(list)
     for i in range(warmup_period, len(eviction_traces[0])):
       cache_accesses = [trace[i].cache_access for trace in eviction_traces]
       scores, pred_reuse_distances, hidden_state, _ = self(cache_accesses, hidden_state, inference=False)
@@ -291,5 +289,5 @@ class ReuseDistanceLoss(LossFunction):
     del probs
 
     return F.mse_loss(
-        predicted_log_reuse_distances * mask.float(),
-        true_log_reuse_distances * mask.float(), reduce=False).mean(-1)
+        predicted_log_reuse_distances.float() * mask.float(),
+        true_log_reuse_distances.float() * mask.float(), reduce=False).mean(-1)
